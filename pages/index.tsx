@@ -128,8 +128,8 @@ const Home = memo(() => {
         </FormControl>
 
         <Box sx={{ width: '100%' }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={year} onChange={setYearHandler}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider', overflowX: 'auto' }}>
+            <Tabs value={year} onChange={setYearHandler} sx={{ width: 'fit-content' }}>
               {Object.keys(groupedProgression).map((year) => {
                 return <Tab label={year} value={year} key={year} />
               })}
