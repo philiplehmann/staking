@@ -119,11 +119,11 @@ const Home = memo(() => {
             noValidate
             autoComplete="off"
           >
-            <TextField label="Rate" value={rate} onChange={setRateHandler} />
-            <TextField label="Capital" value={capital} onChange={setCapitalHandler} />
-            <TextField label="Percent" value={percent} onChange={setPercentHandler} />
-            <TextField label="Payouts" value={payouts} onChange={setPayoutsHandler} />
-            <TextField label="Years" value={years} onChange={setYearsHandler} />
+            <TextField label="Rate" type="number" value={rate} onChange={setRateHandler} />
+            <TextField label="Capital" type="number" value={capital} onChange={setCapitalHandler} />
+            <TextField label="Percent" type="number" value={percent} onChange={setPercentHandler} />
+            <TextField label="Payouts" type="number" value={payouts} onChange={setPayoutsHandler} />
+            <TextField label="Years" type="number" value={years} onChange={setYearsHandler} />
           </Box>
         </FormControl>
 
