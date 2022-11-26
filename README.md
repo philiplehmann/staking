@@ -1,4 +1,4 @@
-# calulate profit of staking
+# calculate profit of staking
 minimal application to calculate profit of staking funds with progression over years
 
 ## Getting Started
