@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: staking-philiplehmann
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staking-philiplehmann
+  template:
+    metadata:
+      labels:
+        app: staking-philiplehmann
+    spec:
+      imagePullSecrets:
+        - name: docker-registry-github
+      containers:
+        - name: staking-philiplehmann
+          image: ghcr.io/philiplehmann/staking:latest
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "3000"
+            - name: NODE_ENV
+              value: production
+          ports:
+            - containerPort: 3000
+      restartPolicy: Always
