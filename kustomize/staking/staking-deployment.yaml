@@ -13,10 +13,10 @@ spec:
         app: staking-philiplehmann
     spec:
       imagePullSecrets:
-        - name: docker-registry-github
+        - name: docker-registry-harbor
       containers:
         - name: staking-philiplehmann
-          image: ghcr.io/philiplehmann/staking:latest
+          image: harbor.riwi.dev/philiplehmann/staking:latest
           imagePullPolicy: Always
           env:
             - name: PORT

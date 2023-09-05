@@ -6,6 +6,6 @@ resources:
 - staking-service.yaml
 - staking-ingress.yaml
 images:
-- name: ghcr.io/philiplehmann/staking
-  newName: ghcr.io/philiplehmann/staking
+- name: harbor.riwi.dev/philiplehmann/staking
+  newName: harbor.riwi.dev/philiplehmann/staking
   newTag: 22-12-13.6
