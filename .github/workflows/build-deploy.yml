@@ -36,7 +36,7 @@ jobs:
           tags: |
             harbor.riwi.dev/philiplehmann/staking:latest
             harbor.riwi.dev/philiplehmann/staking:${{ env.TAG_VERSION }}
-  
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -48,7 +48,7 @@ jobs:
           fetch-depth: 0
       - name: set version
         run: echo "TAG_VERSION=$(date +'%y-%m-%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-      - uses: imranismail/setup-kustomize@v2
+      - uses: philiplehmann/setup-kustomize@v2.2.2
       - name: deploy
         run: |
           cd kustomize/staking
