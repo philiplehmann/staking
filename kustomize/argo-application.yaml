@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: staking-philiplehmann
+spec:
+  destination:
+    name: public
+    namespace: staking-philiplehmann
+  source:
+    path: kustomize
+    repoURL: git@github.com:philiplehmann/staking.git
+    targetRevision: HEAD
+  project: philip
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 2

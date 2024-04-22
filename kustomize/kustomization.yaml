@@ -4,6 +4,7 @@ namespace: staking-philiplehmann
 
 resources:
   - namespace.yaml
+  - argo-application.yaml
 
 bases:
   - staking
