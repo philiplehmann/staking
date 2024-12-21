@@ -1,11 +1,24 @@
-FROM bitnami/node:22 AS builder
+FROM bitnami/node:22.12.0 AS builder
 WORKDIR /app
 COPY . .
 RUN yarn install --immutable && \
     yarn build
 
+######################################################################################
+
+FROM bitnami/node:22.12.0 AS node-modules
+WORKDIR /app
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn/releases .yarn/releases
+
+RUN corepack enable; \
+    yarn workspaces focus --production; \
+    yarn install --immutable
+
+######################################################################################
+
 # Production image, copy all the files and run next
-FROM bitnami/node:22 AS runner
+FROM bitnami/node:22.12.0 AS runner
 WORKDIR /app
 
 RUN useradd -r staking && \
@@ -16,7 +29,7 @@ RUN useradd -r staking && \
 COPY --from=builder --chown=staking:staking /app/package.json ./package.json
 COPY --from=builder --chown=staking:staking /app/yarn.lock ./yarn.lock
 COPY --from=builder --chown=staking:staking /app/.next ./.next
-COPY --from=builder --chown=staking:staking /app/node_modules ./node_modules
+COPY --from=node-modules --chown=staking:staking /app/node_modules ./node_modules
 
 USER staking
 
