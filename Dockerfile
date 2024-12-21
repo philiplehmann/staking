@@ -1,11 +1,11 @@
-FROM bitnami/node:18 AS builder
+FROM bitnami/node:22 AS builder
 WORKDIR /app
 COPY . .
 RUN yarn install --immutable && \
     yarn build
 
 # Production image, copy all the files and run next
-FROM bitnami/node:18 AS runner
+FROM bitnami/node:22 AS runner
 WORKDIR /app
 
 RUN useradd -r staking && \
