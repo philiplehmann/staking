@@ -58,3 +58,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: Set image tag to `${{ env.TAG_VERSION }}`
+          rebase: true
