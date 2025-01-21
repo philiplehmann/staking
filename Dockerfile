@@ -1,4 +1,4 @@
-FROM bitnami/node:22.13.0 AS builder
+FROM bitnami/node:22.13.1 AS builder
 WORKDIR /app
 COPY . .
 RUN yarn install --immutable && \
@@ -6,7 +6,7 @@ RUN yarn install --immutable && \
 
 ######################################################################################
 
-FROM bitnami/node:22.13.0 AS node-modules
+FROM bitnami/node:22.13.1 AS node-modules
 WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn/releases .yarn/releases
@@ -18,7 +18,7 @@ RUN corepack enable; \
 ######################################################################################
 
 # Production image, copy all the files and run next
-FROM bitnami/node:22.13.0 AS runner
+FROM bitnami/node:22.13.1 AS runner
 WORKDIR /app
 
 RUN useradd -r staking && \
