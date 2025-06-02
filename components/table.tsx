@@ -1,9 +1,9 @@
-import React from 'react'
-import { format } from 'date-fns'
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { format } from 'date-fns';
+import React from 'react';
 
-const currencyFormat = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CHF' })
-const numberFormat = new Intl.NumberFormat('de-DE')
+const currencyFormat = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CHF' });
+const numberFormat = new Intl.NumberFormat('de-DE');
 
 const formatNumber = (number: number, formatter: Intl.NumberFormat = numberFormat): string => {
   return formatter
@@ -11,15 +11,15 @@ const formatNumber = (number: number, formatter: Intl.NumberFormat = numberForma
     .map(({ type, value }) => {
       switch (type) {
         case 'group':
-          return "'"
+          return "'";
         case 'decimal':
-          return '.'
+          return '.';
         default:
-          return value
+          return value;
       }
     })
-    .join('')
-}
+    .join('');
+};
 
 export const SimpleTable = ({ rows }) => {
   return (
@@ -42,10 +42,10 @@ export const SimpleTable = ({ rows }) => {
                 <TableCell align="right">{row.plus && formatNumber(row.plus, numberFormat)}</TableCell>
                 <TableCell align="right">{formatNumber(row.amount, currencyFormat)}</TableCell>
               </TableRow>
-            )
+            );
           })}
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};
