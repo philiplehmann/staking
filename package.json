@@ -6,11 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
-    "lint:js": "eslint --ext '.ts,.tsx' components helpers pages",
-    "lint:css": "stylelint components helpers pages",
+    "lint:js": "biome check components helpers pages",
     "lint:types": "tsc --noEmit",
-    "lint": "yarn lint:js && yarn lint:css && yarn lint:types",
-    "lint-fix": "eslint --ext '.ts,.tsx' --fix components helpers pages"
+    "lint": "yarn lint:js && yarn lint:types",
+    "lint:fix": "biome check --write components helpers pages"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -26,13 +25,9 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/node": "^22.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "^15.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
+    "@types/react": "19.1.6",
     "prettier": "^3.1.1",
     "typescript": "^5.3.3"
   },
