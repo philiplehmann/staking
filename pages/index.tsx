@@ -1,10 +1,9 @@
+import { FormControl, TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Head from 'next/head';
-import React, { useState, useCallback, useMemo, memo, type SyntheticEvent, useEffect } from 'react';
-
-import { FormControl, TextField } from '@mui/material';
+import { memo, type SyntheticEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { SimpleTable } from '../components/table';
 import styles from '../styles/Home.module.css';
 
@@ -26,7 +25,7 @@ const Home = memo(() => {
 
   const [year, setYear] = useState(String(new Date().getFullYear()));
 
-  const setYearHandler = useCallback((event: SyntheticEvent, newValue: string) => {
+  const setYearHandler = useCallback((_event: SyntheticEvent, newValue: string) => {
     setYear(newValue);
   }, []);
   const setRateHandler = useCallback((event) => {
