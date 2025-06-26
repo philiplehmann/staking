@@ -1,7 +1,7 @@
 import type { EmotionCache } from '@emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 import type { AppType } from 'next/dist/shared/lib/utils';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 import createEmotionCache from '../helpers/emotion_cache';
 
@@ -69,7 +69,7 @@ MyDocument.getInitialProps = async (ctx) => {
     <style
       data-emotion={`${style.key} ${style.ids.join(' ')}`}
       key={style.key}
-      // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: needed
       dangerouslySetInnerHTML={{ __html: style.css }}
     />
   ));

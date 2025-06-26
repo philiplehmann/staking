@@ -1,6 +1,5 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { format } from 'date-fns';
-import React from 'react';
 
 const currencyFormat = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CHF' });
 const numberFormat = new Intl.NumberFormat('de-DE');
