@@ -1,4 +1,4 @@
-FROM node:24.13.0 AS builder
+FROM node:24.13.1 AS builder
 WORKDIR /app
 COPY . .
 RUN yarn install --immutable && \
@@ -6,7 +6,7 @@ RUN yarn install --immutable && \
 
 ######################################################################################
 
-FROM node:24.13.0 AS node-modules
+FROM node:24.13.1 AS node-modules
 WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn/releases .yarn/releases
@@ -18,7 +18,7 @@ RUN corepack enable; \
 ######################################################################################
 
 # Production image, copy all the files and run next
-FROM node:24.13.0 AS runner
+FROM node:24.13.1 AS runner
 WORKDIR /app
 
 RUN useradd -r staking && \
