@@ -8,4 +8,4 @@ resources:
 images:
 - name: harbor.riwi.dev/philiplehmann/staking
   newName: harbor.riwi.dev/philiplehmann/staking
-  newTag: 26-03-17.404
+  newTag: 26-04-16.406
