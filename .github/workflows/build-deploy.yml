@@ -78,8 +78,23 @@ jobs:
           cd kustomize/staking
           kustomize edit set image harbor.riwi.dev/philiplehmann/staking=harbor.riwi.dev/philiplehmann/staking:${{ env.TAG_VERSION }}
       - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: Set image tag to `${{ env.TAG_VERSION }}`
-          rebase: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add kustomize/staking/kustomization.yaml
+          git commit -m "Set image tag to \`${{ env.TAG_VERSION }}\`"
+
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push rejected, pulling latest changes before retrying (attempt ${attempt})..."
+            git fetch origin main
+            # Re-apply our commit on top of the latest main. If another run already
+            # bumped the same image tag line, keep our version since it reflects the
+            # image we just built and pushed in this run.
+            git rebase -X ours origin/main
+          done
+
+          echo "Failed to push changes after multiple attempts" >&2
+          exit 1
